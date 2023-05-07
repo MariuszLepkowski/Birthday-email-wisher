@@ -4,9 +4,9 @@ import smtplib
 import os
 import random
 
+PLACEHOLDER = "[NAME]"
 MY_EMAIL = "YOUR EMAIL"
 MY_PASSWORD = "YOUR PASSWORD"
-PLACEHOLDER = "[NAME]"
 
 today = dt.datetime.today()
 today_month = int(today.strftime("%m"))
@@ -24,8 +24,6 @@ random_template = random.choice(os.listdir("letter_templates"))
 with open(f"./letter_templates/{random_template}", "r") as file:
     template_contents = file.read()
     template_to_send = template_contents.replace(PLACEHOLDER, receiver_name)
-    print(template_to_send)
-
 
 with smtplib.SMTP("YOUR EMAIL PROVIDER SMTP SERVER ADDRESS", 587, timeout=120) as connection:
     connection.starttls()
